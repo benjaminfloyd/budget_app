@@ -10,6 +10,20 @@ var users = require('./routes/users');
 
 var app = express();
 
+var mongoose = require('mongoose');
+ 
+mongoose.connect('mongodb://localhost/budget_app');
+
+app.listen(3000);
+
+//controller for Credits
+var creditsController = require('./controllers/credits.js');
+app.use('/credits', creditsController);
+
+//controller for Expenses
+var expenseController = require('./controllers/expenses.js');
+app.use('/expenses', expenseController);
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
